@@ -15,7 +15,7 @@ import axios from "axios"
     const[checkIn,setCheckIn]=useState('')
     const[checkOut,setCheckOut]=useState('')
     const[maxGuests,setMaxGuests]=useState(1)
-    const[price,setPrice]=useState(1500)
+    const[price,setPrice]=useState(2000)
     const[redirect,setRedirect]=useState(false)
     useEffect(()=>{
         if(!id){
@@ -113,7 +113,13 @@ import axios from "axios"
                 </div>
                 <div>
                   <h3 className="mt-2 -mb-1">Price per night</h3>
-                  <input type="number" value={price} onChange={e=>setPrice(e.target.value)}/>
+                  <input type="number" value={price} onChange={e=>{
+                    if(e.target.value<=0){
+                      e.target.value=1500
+                      setPrice(e.target.value)
+                    }
+                    setPrice(e.target.value)
+                    }}/>
                 </div>
               </div>
               <button className="primary my-4">Save</button>

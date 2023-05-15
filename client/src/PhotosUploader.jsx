@@ -1,5 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
+import Image from "./Image"
+
 export default function PhotosUploader({addedPhotos,onChange}) {
     const[photoLink,setPhotoLink]=useState('')
     async function addPhotoByLink(e){
@@ -54,9 +56,9 @@ export default function PhotosUploader({addedPhotos,onChange}) {
         {addedPhotos.length > 0 &&
           addedPhotos.map((link, index) => (
             <div className="flex relative" key={index}>
-                <img
+                <Image
                   className="rounded-2xl object-cover"
-                  src={"http://localhost:4000/uploads/" + link}
+                  src={link}
                 />
                 <button onClick={(e)=>removePhoto(e,link)} className="absolute bottom-2 right-2 text-white bg-black bg-opacity-50 rounded-2xl p-1 py-2 px-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
