@@ -25,7 +25,7 @@ app.use('/uploads', express.static(__dirname+'/uploads'))
 app.use(cookieParser())
 app.use(cors({
     credentials:true,
-    origin:true,
+    origin:'http://localhost:5173'||'https://rarebnb-anaveragec0der.vercel.app/',
 }))
 
 async function uploadToS3(path,originalFilename,mimetype){
@@ -168,6 +168,7 @@ app.get('/api/user-places',(req,res)=>{
         const{id}=userData
         res.json( await Place.find({owner:id}))
     })
+
 })
 app.get('/api/places/:id',async (req,res)=>{
     mongoose.connect(process.env.MONGO_URL)
