@@ -15,7 +15,7 @@ const mime=require('mime-types')
 const { resolve } = require('path')
 require('dotenv').config()
 const app=express()
-
+const PORT=process.env.PORT || 4000
 const bcrytSalt=bcrypt.genSaltSync(10);
 const jwtSecret=process.env.JWT_SECRET
 const bucket='my-booking-app'
@@ -25,7 +25,7 @@ app.use('/uploads', express.static(__dirname+'/uploads'))
 app.use(cookieParser())
 app.use(cors({
     credentials:true,
-    origin:'http://localhost:5173',
+    origin:true,
 }))
 
 async function uploadToS3(path,originalFilename,mimetype){
@@ -222,4 +222,4 @@ app.get('/api/bookings', async (req,res)=>{
     const userData=await getUserDataFromReq(req)
    res.json(await Booking.find({user:userData.id}).populate('place'))
 })
-app.listen(4000)
+app.listen(PORT)
