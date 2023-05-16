@@ -25,7 +25,7 @@ app.use('/uploads', express.static(__dirname+'/uploads'))
 app.use(cookieParser())
 app.use(cors({
     credentials:true,
-    origin:['http://localhost:5173', 'https://rarebnb-anaveragec0der.vercel.app'],
+    origin:true,
 }))
 
 async function uploadToS3(path,originalFilename,mimetype){
