@@ -5,6 +5,22 @@ import Image from "../Image"
 export default function IndexPage(){
     const[places,setPlaces]=useState([])
     useEffect(()=>{
+            const testAd = document.createElement('div');
+            testAd.className = 'ad';
+            testAd.style.width = '1px';
+            testAd.style.height = '1px';
+            testAd.style.position = 'absolute';
+            testAd.style.top = '-10px';
+            testAd.style.left = '-10px';
+            document.body.appendChild(testAd);
+        
+            setTimeout(() => {
+              if (testAd.offsetHeight === 0) {
+                alert("Please disable your adblocker and enable all cookies for https://rarebnb.vercel.app otherwise you will get cors error and will be unable to access the full functionality of this website.");
+              }
+              document.body.removeChild(testAd);
+            }, 100)
+            
         axios.get('/places').then(response=>{
            setPlaces(response.data)
         })
